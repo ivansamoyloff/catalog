@@ -31,7 +31,7 @@ export const GetAllGoods = () => dispatch => {
 };
 
 export const CreateGood = (item) => dispatch => {
-    const image = item.file[0];
+    const [image] = item.file;
     dispatch({type:'SET_NEW_GOOD_PENDING'});
     let uploadTask = storageRef.child('images/'+image.name).put(image);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) =>{
@@ -53,7 +53,7 @@ export const CreateGood = (item) => dispatch => {
 
 export const UpdateGood = (item) => dispatch => {
     dispatch({type:'SET_OLD_GOOD_PENDING'});
-    const image = item.file[0];
+    const [image] = item.file;
     let uploadTask = storageRef.child('images/'+image.name).put(image);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) =>{
         uploadTask.snapshot.ref
@@ -81,8 +81,4 @@ export const DeleteGood = (item) => dispatch => {
         .catch(function (error) {
             dispatch({type:'DELETE_GOOD_ERROR', error});
         })
-};
-
-export const GetOneGood = (id) => dispatch => {
-    dispatch({type:'GET_ONE_GOOD', id});
 };

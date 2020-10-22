@@ -4,8 +4,7 @@ const initialState = {
     error:false,
     email: '',
     password:'',
-    goods:[],
-    good:{}
+    goods:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,13 +36,11 @@ const reducer = (state = initialState, action) => {
         case 'SET_OLD_GOOD_PENDING':
             return {...state, isLoading: true};
         case 'DELETE_GOOD_DONE':
-            return {...state, isLoading: false, goods: state.goods.filter((item) => item.id !== action.item.id)};
+            return {...state, isLoading: false, goods: state.goods.find((item) => item.id === action.item.id)};
         case 'DELETE_GOOD_ERROR':
             return {...state, isLoading: false, error: action.error};
         case 'DELETE_GOOD_PENDING':
             return {...state, isLoading: true};
-        case 'GET_ONE_GOOD':
-            return {...state, good: state.goods.filter((item) => item.id === action.id)};
         default:
             return {...state};
     }

@@ -1,18 +1,18 @@
 import React from "react";
 import '../styles/Item.css'
-import {DeleteGood, GetOneGood} from "../../services/actions";
+import {DeleteGood} from "../../services/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 
-const Item = (data) => {
+const Item = (props) => {
 
-    const {data:{src, name}} = data;
+    const {data:{src, name}} = props;
 
     return (
         <div className="col-md-4">
             <div className="card mb-3 shadow-sm" >
                 <img src={src} alt={name} style={{width:'300px', height:'200px'}}/>
-                <ItemDescription data={data}/>
+                <ItemDescription data={props}/>
             </div>
         </div>
 
@@ -33,7 +33,6 @@ const ControlButtons = (item) => {
                     type="button"
                     className="btn btn-sm btn-outline-danger"
                     onClick={()=>{
-                        dispatch(GetOneGood(data.id));
                         history.push(`/edit/${data.id}`)
                     }}
                     >

@@ -26,27 +26,23 @@ const ItemEdit = () => {
 
     useEffect(()=>{
         if (id){
+
             setName(good.name);
             setDescription(good.description);
             setPrice(good.price)
         }
     }, []);
 
-
-    useEffect( () => {
-        if (!!added){
-            history.push('/')
-        }
-    }, [history, added]);
-
     const onSubmit = (data) => {
         if(id && !!imgAccept){
             data.id = id;
             dispatch(UpdateGood(data));
             setAdded(true);
+            history.push('/')
         }else if(!!imgAccept ){
             dispatch(CreateGood(data));
             setAdded(true);
+            history.push('/')
         }
 
     };
