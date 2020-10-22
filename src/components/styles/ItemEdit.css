@@ -1,0 +1,14 @@
+.form{
+    width: 21%;
+    margin: 0 auto;
+    border: 1rem solid black;
+}
+label{
+    margin: 0.8rem;
+}
+input{
+    margin: 0.8rem;
+}
+textarea{
+    margin: 0.8rem;
+}
